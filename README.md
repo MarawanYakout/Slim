@@ -6,11 +6,11 @@ Terminal Connected CLI that uses a Local connected LLM using Ollama / LM Studio 
 ## Idea
 
 
-- The Parser (Rust or Python): Write a CLI wrapper that executes a command (like cargo build, gcc, or tailing journalctl). The parser uses regex to identify the exact block containing the ERROR or PANIC state, stripping out the boilerplate, timestamps, and irrelevant successful compilation lines.
+- The CLI Wrapper (C instead of Rust/Python): Instead of using Python or Rust for the parser as originally pitched, we use statically compiled C. The C binary intercepts the target command (like gcc or cargo build), reads stderr, and uses POSIX regex to isolate the exact block containing the ERROR or PANIC state. It strips out the timestamps and successful compilation lines instantly.
 
-- The LLM: The parsed, isolated error block is sent to the local LLM with a system prompt: "You are an expert systems programmer. Explain this error in one sentence, and provide the most likely code fix."
+- The LLM Bridge (Python): The C parser pipes that highly constrained error block to your Python script. Python packages it with the system prompt: "You are an expert systems programmer. Explain this error in one sentence, and provide the most likely code fix."
 
-- Why it works: Small LLMs can get confused or hallucinate if you feed them 500 lines of raw dmesg output. By parsing first, you give the 4B model a highly constrained context window, guaranteeing a much higher-quality output.
+- The Inference Engine (llama.cpp): Python sends the prompt to your local 4B model (like Qwen 2.5 3B). Because the context window is strictly constrained by the C parser, the model doesn't hallucinate. It processes the request rapidly, leveraging Vulkan on your AMD hardware for fast local inference.
 
 ## PLan
 
