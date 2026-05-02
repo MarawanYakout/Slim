@@ -8,7 +8,7 @@
 int main(int argc, char *argv[]){
     int fd[2]; //used to store both ends of pipe (file descriptor)
     pid_t pid;
-    char buffer[256];
+    char buffer[512];
     size_t total_len = 0;
 
     for (int i = 1; i < argc; i++) {
@@ -55,16 +55,13 @@ int main(int argc, char *argv[]){
         }
         else if(read_status>=1){
             buffer[read_status]='\0';
-            FILE *python_pipe = popen("python ../LLM_Talker.py", "w");
+            FILE *python_pipe = popen("python /home/m-ammar/Documents/GitHub/Slim/LLM_Talker.py", "w");
             if(python_pipe==NULL){
                 perror("error reaching the python file\n");
                 exit(1);
             }
             fprintf(python_pipe,"%s",buffer);
             pclose(python_pipe);
-        }
-        else{
-            printf("there is no problem with your command\n");
         }
         wait(NULL);
         free(result);
