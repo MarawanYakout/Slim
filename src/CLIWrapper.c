@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
             exit(1);
         }
         close(fd[1]);
-        execlp("sh", "sh", "-c", result, NULL); //run the command
+        execlp("/home/m-ammar/Documents/GitHub/Slim/LLM_Talker.pysh", "sh", "-c", result, NULL); //run the command
     }
     else{
         close(fd[1]); //parent is reader close its write end
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]){
         }
         else if(read_status>=1){
             buffer[read_status]='\0';
-            FILE *python_pipe = popen("python /home/m-ammar/Documents/GitHub/Slim/LLM_Talker.py", "w");
+            FILE *python_pipe = popen("python /home/m-ammar/Documents/GitHub/home/m-ammar/Documents/GitHub/Slim/LLM_Talker.py/Slim/LLM_Talker.py", "w");
             if(python_pipe==NULL){
                 perror("error reaching the python file\n");
                 exit(1);
