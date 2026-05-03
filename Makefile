@@ -3,18 +3,13 @@ CFLAGS = -Wall -Wextra -std=c11
 TARGET = slim
 SRC = src/slim.c
 
-<<<<<<< HEAD
-=======
 INSTALL_DIR = /usr/local/lib/slim
-BIN_DIR = /usr/local/bin 
+BIN_DIR = /usr/local/bin
 
->>>>>>> 2339bd5 (Fixing Pipeline with Python and Merge New Code)
 all:
 	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
 clean:
 	rm -f $(TARGET)
-<<<<<<< HEAD
-=======
 
 install:
 	sudo mkdir -p $(INSTALL_DIR)
@@ -27,7 +22,6 @@ uninstall:
 	sudo rm -rf $(INSTALL_DIR)
 	sudo rm -f  $(BIN_DIR)/slim
 	@echo "Slim is Uninstalled"
->>>>>>> 2339bd5 (Fixing Pipeline with Python and Merge New Code)
 test:
 	@echo 'int main() { return undefined_var;}' > /tmp/test_broken.c
 	-./slim gcc /tmp/test_broken.c -o /tmp/test_broken_out

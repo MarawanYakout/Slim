@@ -109,12 +109,10 @@ int main(int argc, char *argv[])
 		printf("[slim] No errors detected. Successful Build\n");
 		return 0;
 	}
-<<<<<<< HEAD
 
 	// if exit_status failed return 1 else return 0;
 	printf("%s",error_block); //<-- python takes this via stdin
 	return (exit_status != 0) ? 1 : 0;
-=======
 	
 	// if exit_status failed return 1 else return 0;
 	char python_cmd[512];
@@ -122,10 +120,9 @@ int main(int argc, char *argv[])
 	FILE *py_pipe = popen(python_cmd, "w");
 	if (py_pipe)
 	{
-		fprintf(py_pipe, %s, error_block); //send error block to python
+		fprintf(py_pipe, "%s", error_block); //send error block to python
 		pclose(py_pipe);
 	} else {
 		printf("%s", error_block);
 	}
->>>>>>> 2339bd5 (Fixing Pipeline with Python and Merge New Code)
 }
