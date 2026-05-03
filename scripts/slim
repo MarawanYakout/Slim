@@ -1,7 +1,8 @@
 #!/bin/bash
 # slim - entry point
 
-SLIM_BIN="$(dirname "$0")/../slim_interceptor"
-SLIM_BRIDGE="$(dirname "$0")/../bridge/ask_llm.py"
+# Go up from /bin, then down into /lib/slim
+SLIM_BIN="$(dirname "$0")/../lib/slim/slim_interceptor"
+SLIM_BRIDGE="$(dirname "$0")/../lib/slim/ask_llm.py"
 
 "$SLIM_BIN" "$@" | python3 "$SLIM_BRIDGE"

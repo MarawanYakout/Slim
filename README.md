@@ -220,4 +220,4 @@ Windows is explicitly unsupported. The C interceptor relies on POSIX APIs (`pope
 
 ## Contributers
 
-- Pinebruiser
+- Mustafa Ammar (Pinebruiser)
