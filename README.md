@@ -216,4 +216,8 @@ Windows is explicitly unsupported. The C interceptor relies on POSIX APIs (`pope
 
 ## Author
 
-Marawan Yakout
+- Marawan Yakout
+
+## Contributers
+
+- Pinebruiser
